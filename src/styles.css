@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  @apply m-0 min-h-screen bg-cream text-olive font-sans antialiased transition-colors duration-500 dark:bg-forest dark:text-mist;
+}
+
+.glass-panel {
+  @apply border border-white/35 bg-white/50 shadow-glass backdrop-blur-md dark:border-white/15 dark:bg-white/10;
+}
+
+.liquid-link {
+  @apply relative inline-flex items-center text-sm font-medium text-start;
+}
+
+.liquid-link::after {
+  content: '';
+  @apply absolute -bottom-1 start-0 h-0.5 w-full origin-start scale-x-0 rounded-full bg-wheat transition-transform duration-300 ease-out;
+}
+
+.liquid-link:hover::after,
+.liquid-link:focus-visible::after {
+  @apply scale-x-100;
+}
