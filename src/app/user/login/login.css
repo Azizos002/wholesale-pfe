@@ -1,0 +1,6 @@
+:host { display:block; }
+.auth-bg { background: radial-gradient(circle at top, #f8fafc, #e2e8f0); }
+.blob { position:absolute; width:24rem; height:24rem; border-radius:9999px; filter: blur(40px); background: linear-gradient(135deg, rgba(132,204,22,.35), rgba(14,116,144,.2)); animation: drift 14s ease-in-out infinite alternate; }
+.floating-label { position:relative; }
+:host-context(.dark) .auth-bg { background: radial-gradient(circle at top, #0f172a, #020617); }
+@keyframes drift { from { transform: translate(-15%, -10%) scale(1); } to { transform: translate(20%, 15%) scale(1.15);} }
