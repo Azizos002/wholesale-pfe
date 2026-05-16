@@ -26,7 +26,8 @@ body {
 
 .liquid-link::after {
   content: '';
-  @apply absolute -bottom-1 start-0 h-0.5 w-full origin-start scale-x-0 rounded-full bg-wheat transition-transform duration-300 ease-out;
+  /* Replaced origin-start with origin-left rtl:origin-right */
+  @apply absolute -bottom-1 start-0 h-0.5 w-full origin-left rtl:origin-right scale-x-0 rounded-full bg-wheat transition-transform duration-300 ease-out;
 }
 
 .liquid-link:hover::after,
