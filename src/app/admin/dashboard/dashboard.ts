@@ -74,7 +74,8 @@ export class AdminDashboardComponent implements AfterViewInit {
     const endUsers = this.stats.activeUsers;
 
     const tick = (now: number): void => {
-      const progress = Math.min(1, (now - startedAt) / duration);
+      const linear = Math.min(1, (now - startedAt) / duration);
+      const progress = 1 - Math.pow(1 - linear, 3);
       this.animatedRevenue = Math.floor(endRevenue * progress);
       this.animatedOrders = Math.floor(endOrders * progress);
       this.animatedUsers = Math.floor(endUsers * progress);

@@ -1,37 +1,26 @@
-<nav class="glass-panel sticky top-4 z-50 mx-4 rounded-2xl px-4 py-3 md:mx-8 md:px-6">
+<nav class="glass-panel sticky top-4 z-50 mx-auto w-[min(96%,74rem)] rounded-full px-6 py-3 backdrop-blur-xl">
   <div class="flex flex-wrap items-center justify-between gap-4">
     <h1 class="font-display text-2xl font-bold text-start">DeliverWholesale</h1>
 
-    <div class="flex items-center gap-4 md:gap-6">
+    <div class="flex items-center gap-5 md:gap-7">
       @for (link of navLinks; track link.label) {
-        <a
-          #liquidLink
-          class="liquid-link bg-gradient-to-r from-wheat/40 to-transparent bg-[length:200%_100%] bg-no-repeat px-1"
-          [routerLink]="link.route"
-          routerLinkActive="font-semibold"
-          [routerLinkActiveOptions]="{ exact: link.route === '/' }"
-        >{{ link.label }}</a>
+        <a #liquidLink class="liquid-link bg-gradient-to-r from-wheat/40 to-transparent bg-[length:200%_100%] bg-no-repeat px-1" [routerLink]="link.route" routerLinkActive="font-semibold" [routerLinkActiveOptions]="{ exact: link.route === '/' }">{{ link.label }}</a>
+      }
+      @if (auth.isAdmin()) {
+        <a #liquidLink class="liquid-link bg-gradient-to-r from-wheat/40 to-transparent bg-[length:200%_100%] bg-no-repeat px-1" routerLink="/admin" routerLinkActive="font-semibold">Admin</a>
       }
     </div>
 
     <div class="flex items-center gap-3 ms-auto">
-      <button
-        type="button"
-        (click)="toggleTheme()"
-        class="glass-panel rounded-full px-3 py-2 text-xs font-semibold transition-transform hover:scale-105"
-      >
-        {{ isDark() ? '☾ Dark' : '☀ Light' }}
-      </button>
-
-      <select
-        class="glass-panel rounded-full px-3 py-2 text-xs font-semibold text-start"
-        [value]="currentLanguage()"
-        (change)="changeLanguage(($any($event.target).value))"
-      >
-        <option value="en">EN</option>
-        <option value="fr">FR</option>
-        <option value="ar">AR</option>
-      </select>
+      @if (!auth.isAuthenticated()) {
+        <a #magneticBtn class="magnetic-btn rounded-full px-4 py-2 text-xs font-semibold" routerLink="/login">Login</a>
+        <a #magneticBtn class="magnetic-btn rounded-full px-4 py-2 text-xs font-semibold" routerLink="/register">Register</a>
+      } @else {
+        <a class="text-xs font-semibold opacity-80" routerLink="/">Profile</a>
+        <button #magneticBtn type="button" class="magnetic-btn rounded-full px-4 py-2 text-xs font-semibold" (click)="logout()">Logout</button>
+      }
+      <button #magneticBtn type="button" (click)="toggleTheme()" class="magnetic-btn rounded-full px-3 py-2 text-xs font-semibold">{{ isDark() ? '☾ Dark' : '☀ Light' }}</button>
+      <select class="glass-panel rounded-full px-3 py-2 text-xs font-semibold text-start" [value]="currentLanguage()" (change)="changeLanguage(($any($event.target).value))"><option value="en">EN</option><option value="fr">FR</option><option value="ar">AR</option></select>
     </div>
   </div>
 </nav>
