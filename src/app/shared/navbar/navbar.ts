@@ -1,5 +1,6 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, afterNextRender, signal, viewChildren } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 declare global {
   interface Window {
@@ -12,7 +13,7 @@ declare global {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './navbar.html'
 })
 export class NavbarComponent {
@@ -21,10 +22,12 @@ export class NavbarComponent {
   readonly currentLanguage = signal<'en' | 'fr' | 'ar'>('en');
 
   readonly navLinks = [
-    { label: 'Home', href: '#' },
-    { label: 'Catalog', href: '#' },
-    { label: 'Brands', href: '#' },
-    { label: 'Contact', href: '#' }
+    { label: 'Home', route: '/' },
+    { label: 'Products', route: '/products' },
+    { label: 'Cart', route: '/cart' },
+    { label: 'Login', route: '/login' },
+    { label: 'Register', route: '/register' },
+    { label: 'Admin', route: '/admin' }
   ];
 
   constructor(@Inject(DOCUMENT) private readonly document: Document) {

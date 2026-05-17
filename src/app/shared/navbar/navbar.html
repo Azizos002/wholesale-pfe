@@ -4,7 +4,13 @@
 
     <div class="flex items-center gap-4 md:gap-6">
       @for (link of navLinks; track link.label) {
-        <a #liquidLink class="liquid-link bg-gradient-to-r from-wheat/40 to-transparent bg-[length:200%_100%] bg-no-repeat px-1" [href]="link.href">{{ link.label }}</a>
+        <a
+          #liquidLink
+          class="liquid-link bg-gradient-to-r from-wheat/40 to-transparent bg-[length:200%_100%] bg-no-repeat px-1"
+          [routerLink]="link.route"
+          routerLinkActive="font-semibold"
+          [routerLinkActiveOptions]="{ exact: link.route === '/' }"
+        >{{ link.label }}</a>
       }
     </div>
 
