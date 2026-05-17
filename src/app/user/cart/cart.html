@@ -15,9 +15,9 @@
 
           <div class="ms-auto flex items-center gap-3">
             <div class="qty-pill">
-              <span class="qty-btn" aria-hidden="true">−</span>
+              <button type="button" class="qty-btn" (click)="updateQuantity(item, -1)" aria-label="Decrease quantity">−</button>
               <span class="qty-value">{{ item.quantity }}</span>
-              <span class="qty-btn" aria-hidden="true">+</span>
+              <button type="button" class="qty-btn" (click)="updateQuantity(item, 1)" aria-label="Increase quantity">+</button>
             </div>
 
             <button (click)="removeItem(item, $event)" class="remove-btn" aria-label="Remove item">
@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <button class="checkout-btn mt-7 w-full rounded-2xl px-5 py-3.5 font-inter font-semibold text-white">
+        <button type="button" (click)="checkout()" class="checkout-btn mt-7 w-full rounded-2xl px-5 py-3.5 font-inter font-semibold text-white">
           Proceed to Checkout
         </button>
       </div>

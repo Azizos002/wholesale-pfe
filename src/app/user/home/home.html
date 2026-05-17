@@ -3,7 +3,7 @@
   <div #orb class="ambient-orb orb-b absolute end-[-6rem] top-[20%] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(236,72,153,0.36),transparent_64%)] blur-[120px]"></div>
   <div #orb class="ambient-orb orb-c absolute bottom-[-8rem] start-[18%] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.32),transparent_65%)] blur-[120px]"></div>
 
-  <section #heroSection class="relative overflow-hidden rounded-[2rem] border border-white/40 bg-white/60 p-6 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/60 md:p-12">
+  <section #heroSection class="relative z-10 overflow-hidden rounded-[2rem] border border-white/40 bg-white/60 p-6 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/60 md:p-12">
     <p #parallaxText class="text-xs uppercase tracking-[0.35em] text-olive/80 rtl:text-right">Premium Wholesale Alimentaire</p>
     <h1 class="mt-5 max-w-5xl overflow-hidden font-display text-5xl leading-[0.95] md:text-7xl">
       <span class="hero-line"><span #heroWord #parallaxText class="hero-word">Curated Flavors</span></span>
@@ -11,7 +11,7 @@
       <span class="hero-line"><span #heroWord #parallaxText class="hero-word">Shelves.</span></span>
     </h1>
     <p #parallaxText class="mt-6 max-w-2xl text-sm text-slate-600 dark:text-slate-300 md:text-lg rtl:text-right">From boutique grocers to large hospitality chains, we orchestrate product lines that sell fast and feel premium.</p>
-    <button #parallaxText class="magnetic-cta group mt-8 inline-flex items-center gap-2 rounded-full border border-white/55 bg-white/75 px-7 py-3 text-sm font-semibold tracking-wide text-slate-900 backdrop-blur dark:border-white/20 dark:bg-slate-800/80 dark:text-slate-100 rtl:flex-row-reverse">
+    <button #parallaxText type="button" routerLink="/products" class="magnetic-cta group relative z-10 mt-8 inline-flex items-center gap-2 rounded-full border border-white/55 bg-white/75 px-7 py-3 text-sm font-semibold tracking-wide text-slate-900 backdrop-blur dark:border-white/20 dark:bg-slate-800/80 dark:text-slate-100 rtl:flex-row-reverse">
       Start your assortment
       <span class="transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">→</span>
     </button>

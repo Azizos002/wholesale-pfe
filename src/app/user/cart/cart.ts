@@ -69,4 +69,14 @@ export class CartComponent implements AfterViewInit {
       }
     });
   }
+
+  updateQuantity(item: CartItem, delta: number): void {
+    this.items = this.items
+      .map((entry) => entry.id === item.id ? { ...entry, quantity: Math.max(1, entry.quantity + delta) } : entry)
+      .filter((entry) => entry.quantity > 0);
+  }
+
+  checkout(): void {
+    // Placeholder handler keeps checkout CTA connected until backend flow is wired.
+  }
 }

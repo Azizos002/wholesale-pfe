@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FooterComponent } from './shared/footer/footer';
 import { NavbarComponent } from './shared/navbar/navbar';
@@ -14,10 +14,17 @@ import { NavbarComponent } from './shared/navbar/navbar';
 export class App {
   constructor(
     private readonly translate: TranslateService,
+    private readonly router: Router,
     @Inject(DOCUMENT) private readonly document: Document
   ) {
     this.translate.setDefaultLang('en');
     this.applyLanguage('en');
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const scrollTrigger = (window as Window & { ScrollTrigger?: { refresh: () => void } }).ScrollTrigger;
+        scrollTrigger?.refresh();
+      }
+    });
   }
 
   applyLanguage(lang: 'en' | 'fr' | 'ar'): void {
