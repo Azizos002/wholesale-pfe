@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import gsap from '../../shared/gsap-lite';
 import { ProductCardComponent } from '../products/product-card/product-card';
 import { Category, Product } from '../../user.products';
@@ -7,7 +8,7 @@ import { Category, Product } from '../../user.products';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, TranslateModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

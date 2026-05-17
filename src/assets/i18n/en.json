@@ -1,0 +1,28 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "PRODUCTS": "Products",
+    "CART": "Cart",
+    "ADMIN": "Admin",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout"
+  },
+  "LANG": {
+    "ENGLISH": "English",
+    "FRENCH": "Français",
+    "ARABIC": "العربية"
+  },
+  "HOME": {
+    "HERO": {
+      "KICKER": "Premium Wholesale Alimentaire",
+      "HEADLINE_LINE_1": "Curated Flavors",
+      "HEADLINE_LINE_2": "for Cinematic",
+      "HEADLINE_LINE_3": "Shelves.",
+      "SUBTITLE": "From boutique grocers to large hospitality chains, we orchestrate product lines that sell fast and feel premium.",
+      "CTA": "Start your assortment"
+    },
+    "FEATURED_PRODUCTS": {
+      "TITLE": "Featured Products"
+    }
+  }
+}

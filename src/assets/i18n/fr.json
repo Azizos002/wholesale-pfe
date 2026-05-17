@@ -1,0 +1,28 @@
+{
+  "NAV": {
+    "HOME": "Accueil",
+    "PRODUCTS": "Produits",
+    "CART": "Panier",
+    "ADMIN": "Admin",
+    "LOGIN": "Connexion",
+    "LOGOUT": "Déconnexion"
+  },
+  "LANG": {
+    "ENGLISH": "Anglais",
+    "FRENCH": "Français",
+    "ARABIC": "Arabe"
+  },
+  "HOME": {
+    "HERO": {
+      "KICKER": "Grossiste alimentaire premium",
+      "HEADLINE_LINE_1": "Saveurs sélectionnées",
+      "HEADLINE_LINE_2": "pour des rayons",
+      "HEADLINE_LINE_3": "spectaculaires.",
+      "SUBTITLE": "Des épiceries fines aux grandes chaînes hôtelières, nous orchestrons des gammes qui se vendent vite et valorisent votre image.",
+      "CTA": "Démarrer votre assortiment"
+    },
+    "FEATURED_PRODUCTS": {
+      "TITLE": "Produits vedettes"
+    }
+  }
+}
