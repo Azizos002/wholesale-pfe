@@ -3,13 +3,14 @@ import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildre
 import gsap from '../../shared/gsap-lite';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { OrderService } from '../../core/services/order.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 type TabKey = 'overview' | 'orders' | 'products' | 'reclamations';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, DecimalPipe],
+  imports: [CommonModule, CurrencyPipe, DecimalPipe, TranslateModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
@@ -25,10 +26,10 @@ export class AdminDashboardComponent implements AfterViewInit {
   activeTab: TabKey = 'overview';
 
   readonly tabs: { key: TabKey; label: string; icon: string }[] = [
-    { key: 'overview', label: 'Overview', icon: '◈' },
-    { key: 'orders', label: 'Orders', icon: '⎘' },
-    { key: 'products', label: 'Inventory', icon: '◫' },
-    { key: 'reclamations', label: 'Reclamations', icon: '⚑' }
+    { key: 'overview', label: 'ADMIN.OVERVIEW', icon: '◈' },
+    { key: 'orders', label: 'ADMIN.ORDERS', icon: '⎘' },
+    { key: 'products', label: 'ADMIN.INVENTORY', icon: '◫' },
+    { key: 'reclamations', label: 'ADMIN.RECLAMATIONS', icon: '⚑' }
   ];
 
   readonly stats = this.dashboardService.stats;

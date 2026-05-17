@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 declare const gsap: any;
 
-@Component({ selector: 'app-user-login', imports: [CommonModule, FormsModule, RouterModule], templateUrl: './login.html', styleUrl: './login.css' })
+@Component({ selector: 'app-user-login', imports: [CommonModule, FormsModule, RouterModule, TranslateModule], templateUrl: './login.html', styleUrl: './login.css' })
 export class LoginComponent {
   @ViewChild('submitBtn') submitBtn!: ElementRef<HTMLButtonElement>;
   private readonly auth = inject(AuthService);

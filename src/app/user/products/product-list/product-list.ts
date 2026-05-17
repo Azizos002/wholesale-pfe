@@ -5,10 +5,11 @@ import { CategoryService } from '../../../core/services/category.service';
 import { ProductService } from '../../../core/services/product.service';
 import { Category, Product } from '../../../user.products';
 import { ProductCardComponent } from '../product-card/product-card';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent, TranslateModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })
