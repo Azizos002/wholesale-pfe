@@ -1,0 +1,36 @@
+<section class="relative min-h-screen px-4 py-8 sm:px-6 lg:px-10">
+  <div class="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,1fr)_360px] rtl:lg:grid-cols-[360px_minmax(0,1fr)]">
+    <div class="space-y-4">
+      <h1 class="text-3xl font-semibold text-slate-800 dark:text-slate-100">Your Cart</h1>
+      <div class="space-y-4">
+        <article #cartCard data-cart-card *ngFor="let item of items" class="overflow-hidden rounded-2xl border border-white/40 bg-white/60 p-4 shadow-xl backdrop-blur-md transition dark:border-white/10 dark:bg-slate-900/60">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-4">
+              <img [src]="item.image" [alt]="item.name" class="h-20 w-20 rounded-xl object-cover" />
+              <div>
+                <p class="text-lg font-semibold text-slate-900 dark:text-slate-100">{{ item.name }}</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">{{ item.category }}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 rtl:flex-row-reverse">
+              <p class="text-base font-medium text-slate-700 dark:text-slate-200">x{{ item.quantity }}</p>
+              <p class="text-lg font-semibold text-olive-700 dark:text-olive-300">${{ item.unitPrice * item.quantity }}</p>
+              <button (click)="removeItem(item, $event)" class="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600 hover:bg-red-100 dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-300">Remove</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <aside class="lg:sticky lg:top-24 h-fit rounded-3xl border border-white/40 bg-white/60 p-6 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-slate-900/65">
+      <h2 class="text-xl font-semibold text-slate-800 dark:text-slate-100">Order Summary</h2>
+      <div class="mt-6 space-y-3 text-slate-600 dark:text-slate-300">
+        <div class="flex items-center justify-between"><span>Subtotal</span><span>${{ subtotal }}</span></div>
+        <div class="flex items-center justify-between"><span>Shipping</span><span>${{ shipping }}</span></div>
+        <div class="my-3 border-t border-slate-200/70 dark:border-slate-700"></div>
+        <div class="flex items-center justify-between text-lg font-semibold text-slate-900 dark:text-slate-50"><span>Total</span><span>${{ total }}</span></div>
+      </div>
+      <button class="mt-6 w-full rounded-2xl bg-olive-700 px-5 py-3 font-medium text-white shadow-lg transition hover:bg-olive-600">Proceed to Checkout</button>
+    </aside>
+  </div>
+</section>

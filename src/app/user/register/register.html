@@ -1,0 +1,21 @@
+<section class="auth-bg relative flex min-h-screen items-center justify-center overflow-hidden px-4">
+  <div class="blob"></div>
+  <div class="relative z-10 w-full max-w-md rounded-3xl border border-white/40 bg-white/65 p-8 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/65">
+    <h1 class="mb-6 text-center text-3xl font-semibold text-slate-900 dark:text-slate-100">Create Account</h1>
+    <form class="space-y-5">
+      <label class="floating-label block">
+        <input [(ngModel)]="fullName" name="fullName" type="text" placeholder=" " class="peer w-full rounded-xl border border-slate-300/70 bg-white/70 px-4 pb-2 pt-6 text-slate-900 outline-none transition focus:border-olive-500 focus:ring-4 focus:ring-olive-500/30 dark:border-slate-600 dark:bg-slate-800/70 dark:text-slate-100" />
+        <span class="pointer-events-none absolute start-4 top-4 text-slate-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-olive-600 dark:text-slate-400">Full name</span>
+      </label>
+      <label class="floating-label block">
+        <input [(ngModel)]="email" name="email" type="email" placeholder=" " class="peer w-full rounded-xl border border-slate-300/70 bg-white/70 px-4 pb-2 pt-6 text-slate-900 outline-none transition focus:border-olive-500 focus:ring-4 focus:ring-olive-500/30 dark:border-slate-600 dark:bg-slate-800/70 dark:text-slate-100" />
+        <span class="pointer-events-none absolute start-4 top-4 text-slate-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-olive-600 dark:text-slate-400">Email</span>
+      </label>
+      <label class="floating-label block">
+        <input [(ngModel)]="password" name="password" type="password" placeholder=" " class="peer w-full rounded-xl border border-slate-300/70 bg-white/70 px-4 pb-2 pt-6 text-slate-900 outline-none transition focus:border-olive-500 focus:ring-4 focus:ring-olive-500/30 dark:border-slate-600 dark:bg-slate-800/70 dark:text-slate-100" />
+        <span class="pointer-events-none absolute start-4 top-4 text-slate-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-xs peer-focus:text-olive-600 dark:text-slate-400">Password</span>
+      </label>
+      <button #submitBtn (mousemove)="onBtnMove($event)" (mouseleave)="resetBtn()" class="w-full rounded-2xl bg-olive-700 px-5 py-3 font-medium text-white shadow-lg transition hover:bg-olive-600">Create account</button>
+    </form>
+  </div>
+</section>
