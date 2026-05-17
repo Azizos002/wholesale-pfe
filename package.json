@@ -22,6 +22,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^20.3.21",
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
     "@angular/core": "^20.3.0",
@@ -29,6 +30,7 @@
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@ngx-translate/core": "^17.0.0",
+    "animations": "^0.0.0",
     "gasp": "^0.0.2",
     "i18n": "^0.15.3",
     "rxjs": "~7.8.0",

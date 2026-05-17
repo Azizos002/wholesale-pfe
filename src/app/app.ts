@@ -30,6 +30,7 @@ export class App implements AfterViewInit, OnDestroy {
   private frameId: number | null = null;
   private currentScroll = 0;
   private targetScroll = 0;
+  private resizeObserver?: ResizeObserver; 
 
   constructor(
     private readonly translate: TranslateService,
@@ -56,6 +57,7 @@ export class App implements AfterViewInit, OnDestroy {
     if (this.frameId !== null) {
       cancelAnimationFrame(this.frameId);
     }
+    this.resizeObserver?.disconnect();
     this.document.body.style.height = '';
   }
 
@@ -83,10 +85,14 @@ export class App implements AfterViewInit, OnDestroy {
     return this.document.documentElement.classList.contains('dark');
   }
 
-  prepareRoute(outlet: RouterOutlet): string {
-    return outlet?.activatedRouteData?.['animation'] ?? outlet?.activatedRoute?.routeConfig?.path ?? 'root';
+  prepareRoute(outlet: RouterOutlet) {
+    if (outlet && outlet.isActivated) {
+      return outlet.activatedRouteData['animation'] || outlet.activatedRoute.routeConfig?.path;
+    }
+    return null;
   }
 
+  // THE FIX: Removed the extra ': void' that was crashing the compiler
   private getSavedTheme(): 'dark' | 'light' {
     const saved = localStorage.getItem('theme');
     if (saved === 'dark' || saved === 'light') return saved;
@@ -102,9 +108,10 @@ export class App implements AfterViewInit, OnDestroy {
     const content = this.smoothContent?.nativeElement;
     if (!content) return;
 
-    const setBodyHeight = () => {
+    this.resizeObserver = new ResizeObserver(() => {
       this.document.body.style.height = `${content.scrollHeight}px`;
-    };
+    });
+    this.resizeObserver.observe(content);
 
     const onScroll = () => {
       this.targetScroll = window.scrollY;
@@ -112,12 +119,11 @@ export class App implements AfterViewInit, OnDestroy {
 
     const render = () => {
       this.currentScroll += (this.targetScroll - this.currentScroll) * 0.09;
-      content.style.transform = `translate3d(0, ${-this.currentScroll}px, 0)`;
+      const y = Math.round(this.currentScroll * 100) / 100;
+      content.style.transform = `translate3d(0, -${y}px, 0)`;
       this.frameId = requestAnimationFrame(render);
     };
 
-    setBodyHeight();
-    window.addEventListener('resize', setBodyHeight);
     window.addEventListener('scroll', onScroll, { passive: true });
     render();
   }
