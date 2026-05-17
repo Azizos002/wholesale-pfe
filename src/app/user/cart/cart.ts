@@ -37,8 +37,9 @@ export class CartComponent implements AfterViewInit {
 
   private animateEntrance(): void {
     if (typeof gsap === 'undefined') return;
+    const isRtl = document?.documentElement?.dir === 'rtl';
     gsap.from(this.cartCards.map((card) => card.nativeElement), {
-      x: 80,
+      x: isRtl ? -80 : 80,
       opacity: 0,
       duration: 0.7,
       stagger: 0.12,
@@ -60,6 +61,7 @@ export class CartComponent implements AfterViewInit {
       marginBottom: 0,
       paddingTop: 0,
       paddingBottom: 0,
+      scaleY: 0.92,
       duration: 0.35,
       ease: 'power2.inOut',
       onComplete: () => {
