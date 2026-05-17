@@ -1,0 +1,75 @@
+<div class="admin-shell">
+  <button class="menu-btn" (click)="isSidebarOpen = !isSidebarOpen">☰</button>
+
+  <aside class="sidebar" [class.open]="isSidebarOpen">
+    <h2>Control Center</h2>
+    <div #activeIndicator class="active-indicator"></div>
+    @for (tab of tabs; track tab.key) {
+      <button
+        #tabItem
+        class="tab"
+        [attr.data-tab]="tab.key"
+        [class.active]="activeTab === tab.key"
+        (click)="selectTab(tab.key)">
+        <span>{{ tab.icon }}</span>
+        <span>{{ tab.label }}</span>
+      </button>
+    }
+  </aside>
+
+  <main class="panel">
+    <header class="topbar">
+      <h1>Admin Dashboard</h1>
+    </header>
+
+    @if (activeTab === 'overview') {
+      <section class="bento-grid">
+        <article #statCard class="stat-card big">
+          <p>Revenue</p>
+          <h3>{{ animatedRevenue | currency:'USD':'symbol':'1.0-0' }}</h3>
+        </article>
+        <article #statCard class="stat-card">
+          <p>Total Orders</p>
+          <h3>{{ animatedOrders | number }}</h3>
+        </article>
+        <article #statCard class="stat-card">
+          <p>Active Users</p>
+          <h3>{{ animatedUsers | number }}</h3>
+        </article>
+      </section>
+    }
+
+    @if (activeTab === 'orders') {
+      <section class="data-list">
+        <div class="list-head"><span>ID</span><span>Client</span><span>Status</span><span>Total</span></div>
+        @for (order of orders; track order.id) {
+          <article class="row">
+            <span>#{{ order.id }}</span><span>{{ order.client }}</span><span>{{ order.status }}</span><span>{{ order.total | currency }}</span>
+          </article>
+        }
+      </section>
+    }
+
+    @if (activeTab === 'products') {
+      <section class="data-list">
+        <div class="list-head"><span>SKU</span><span>Product</span><span>Stock</span><span>Category</span></div>
+        @for (item of inventory; track item.sku) {
+          <article class="row">
+            <span>{{ item.sku }}</span><span>{{ item.name }}</span><span>{{ item.stock }}</span><span>{{ item.category }}</span>
+          </article>
+        }
+      </section>
+    }
+
+    @if (activeTab === 'reclamations') {
+      <section class="data-list">
+        <div class="list-head"><span>Ticket</span><span>Customer</span><span>Subject</span><span>Priority</span></div>
+        @for (ticket of reclamations; track ticket.id) {
+          <article class="row">
+            <span>#{{ ticket.id }}</span><span>{{ ticket.customer }}</span><span>{{ ticket.subject }}</span><span>{{ ticket.priority }}</span>
+          </article>
+        }
+      </section>
+    }
+  </main>
+</div>
