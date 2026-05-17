@@ -30,6 +30,20 @@ const tween = (target: Target | Target[], vars: Vars): void => {
 
 const gsap = {
   to: tween,
+  quickTo: (target: Element, property: string): ((value: number) => void) => {
+    const element = target as HTMLElement;
+    return (value: number) => {
+      if (property === 'x' || property === 'y') {
+        const x = property === 'x' ? value : Number(element.dataset['qx'] ?? 0);
+        const y = property === 'y' ? value : Number(element.dataset['qy'] ?? 0);
+        element.dataset['qx'] = `${x}`;
+        element.dataset['qy'] = `${y}`;
+        element.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+        return;
+      }
+      element.style.setProperty(property, `${value}`);
+    };
+  },
   fromTo: (target: Target | Target[], fromVars: Vars, toVars: Vars): void => {
     asArray(target).forEach((el) => {
       el.style.opacity = `${Number(fromVars['opacity'] ?? 1)}`;

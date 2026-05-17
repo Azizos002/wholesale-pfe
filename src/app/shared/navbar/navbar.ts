@@ -8,8 +8,9 @@ import { AuthService } from '../../core/services/auth.service';
 declare global {
   interface Window {
     gsap?: {
-      fromTo: (...args: unknown[]) => void;
+      fromTo?: (...args: unknown[]) => void;
       to: (...args: unknown[]) => void;
+      quickTo?: (target: Element, property: string, vars: Record<string, unknown>) => (value: number) => void;
     };
   }
 }
@@ -27,6 +28,10 @@ export class NavbarComponent {
   private readonly app = inject(App);
   readonly auth = inject(AuthService);
   currentLanguage: 'en' | 'fr' | 'ar' = 'en';
+
+  get isDarkMode(): boolean {
+    return this.app.isDarkMode();
+  }
 
   readonly navLinks = [
     { key: 'NAV.HOME', route: '/' },
@@ -46,6 +51,10 @@ export class NavbarComponent {
     this.router.navigateByUrl('/');
   }
 
+  toggleTheme(): void {
+    this.app.toggleTheme();
+  }
+
   changeLanguage(value: string): void {
     const lang: 'en' | 'fr' | 'ar' = value === 'ar' ? 'ar' : value === 'fr' ? 'fr' : 'en';
     this.currentLanguage = lang;
@@ -57,7 +66,7 @@ export class NavbarComponent {
     this.links().forEach((linkRef) => {
       const element = linkRef.nativeElement;
       element.addEventListener('mouseenter', () =>
-        window.gsap?.fromTo(
+        window.gsap?.fromTo?.(
           element,
           { backgroundPositionX: '120%' },
           { backgroundPositionX: '0%', duration: 0.6 }

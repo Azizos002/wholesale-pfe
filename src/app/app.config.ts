@@ -1,4 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     // 1. Core Angular Performance Optimizations
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideAnimations(),
     
     // 2. Routing
     provideRouter(routes),
