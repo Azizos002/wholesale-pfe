@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 declare const gsap: any;
 
@@ -14,7 +15,7 @@ interface CartItem {
 
 @Component({
   selector: 'app-user-cart',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './cart.html',
   styleUrl: './cart.css'
 })
