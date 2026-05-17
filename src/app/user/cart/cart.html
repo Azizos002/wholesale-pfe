@@ -1,36 +1,52 @@
 <section class="relative min-h-screen px-4 py-8 sm:px-6 lg:px-10">
-  <div class="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,1fr)_360px] rtl:lg:grid-cols-[360px_minmax(0,1fr)]">
-    <div class="space-y-4">
-      <h1 class="text-3xl font-semibold text-slate-800 dark:text-slate-100">Your Cart</h1>
+  <div class="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(320px,1fr)]">
+    <div class="space-y-5">
+      <h1 class="font-playfair text-3xl font-semibold tracking-tight text-slate-800 dark:text-slate-100">Your Cart</h1>
+
       <div class="space-y-4">
-        <article #cartCard data-cart-card *ngFor="let item of items" class="overflow-hidden rounded-2xl border border-white/40 bg-white/60 p-4 shadow-xl backdrop-blur-md transition dark:border-white/10 dark:bg-slate-900/60">
-          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div class="flex items-center gap-4">
-              <img [src]="item.image" [alt]="item.name" class="h-20 w-20 rounded-xl object-cover" />
-              <div>
-                <p class="text-lg font-semibold text-slate-900 dark:text-slate-100">{{ item.name }}</p>
-                <p class="text-sm text-slate-500 dark:text-slate-400">{{ item.category }}</p>
-              </div>
+        <article #cartCard data-cart-card *ngFor="let item of items" class="cart-item-panel">
+          <img [src]="item.image" [alt]="item.name" class="h-20 w-20 shrink-0 rounded-2xl object-cover" />
+
+          <div class="min-w-0 flex-1 space-y-1">
+            <p class="truncate font-playfair text-xl font-semibold text-slate-900 dark:text-slate-50">{{ item.name }}</p>
+            <p class="font-inter text-sm text-slate-500 dark:text-slate-400">{{ item.category }}</p>
+            <p class="font-inter text-base font-semibold text-olive-700 dark:text-olive-300">${{ item.unitPrice }} <span class="text-sm font-medium text-slate-500 dark:text-slate-400">/ unit</span></p>
+          </div>
+
+          <div class="ms-auto flex items-center gap-3">
+            <div class="qty-pill">
+              <span class="qty-btn" aria-hidden="true">−</span>
+              <span class="qty-value">{{ item.quantity }}</span>
+              <span class="qty-btn" aria-hidden="true">+</span>
             </div>
-            <div class="flex items-center gap-4 rtl:flex-row-reverse">
-              <p class="text-base font-medium text-slate-700 dark:text-slate-200">x{{ item.quantity }}</p>
-              <p class="text-lg font-semibold text-olive-700 dark:text-olive-300">${{ item.unitPrice * item.quantity }}</p>
-              <button (click)="removeItem(item, $event)" class="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600 hover:bg-red-100 dark:border-red-500/40 dark:bg-red-500/10 dark:text-red-300">Remove</button>
-            </div>
+
+            <button (click)="removeItem(item, $event)" class="remove-btn" aria-label="Remove item">
+              Trash
+            </button>
           </div>
         </article>
       </div>
     </div>
 
-    <aside class="lg:sticky lg:top-24 h-fit rounded-3xl border border-white/40 bg-white/60 p-6 shadow-2xl backdrop-blur-md dark:border-white/10 dark:bg-slate-900/65">
-      <h2 class="text-xl font-semibold text-slate-800 dark:text-slate-100">Order Summary</h2>
-      <div class="mt-6 space-y-3 text-slate-600 dark:text-slate-300">
-        <div class="flex items-center justify-between"><span>Subtotal</span><span>${{ subtotal }}</span></div>
-        <div class="flex items-center justify-between"><span>Shipping</span><span>${{ shipping }}</span></div>
-        <div class="my-3 border-t border-slate-200/70 dark:border-slate-700"></div>
-        <div class="flex items-center justify-between text-lg font-semibold text-slate-900 dark:text-slate-50"><span>Total</span><span>${{ total }}</span></div>
+    <aside class="summary-shell lg:sticky lg:top-24 h-fit">
+      <div class="summary-glow" aria-hidden="true"></div>
+      <div class="summary-panel">
+        <h2 class="font-playfair text-2xl font-semibold text-slate-900 dark:text-slate-50">Order Summary</h2>
+
+        <div class="mt-6 space-y-3 font-inter text-slate-600 dark:text-slate-300">
+          <div class="flex items-center justify-between"><span>Subtotal</span><span class="font-medium">${{ subtotal }}</span></div>
+          <div class="flex items-center justify-between"><span>Shipping</span><span class="font-medium">${{ shipping }}</span></div>
+          <div class="h-px w-full bg-slate-200/80 dark:bg-slate-700/90"></div>
+          <div class="flex items-end justify-between">
+            <span class="text-base text-slate-600 dark:text-slate-300">Final Total</span>
+            <span class="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">${{ total }}</span>
+          </div>
+        </div>
+
+        <button class="checkout-btn mt-7 w-full rounded-2xl px-5 py-3.5 font-inter font-semibold text-white">
+          Proceed to Checkout
+        </button>
       </div>
-      <button class="mt-6 w-full rounded-2xl bg-olive-700 px-5 py-3 font-medium text-white shadow-lg transition hover:bg-olive-600">Proceed to Checkout</button>
     </aside>
   </div>
 </section>
